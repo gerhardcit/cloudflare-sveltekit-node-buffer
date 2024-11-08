@@ -1,5 +1,13 @@
-import jwt from 'jsonwebtoken';
+import { SignJWT, jwtVerify } from 'jose';
 
-export const generateToken = (payload: any) => {
-    return jwt.sign(payload, 'somesecret', { expiresIn: '1h' });
+export async function generateToken (payload: any) {
+    const secret = new TextEncoder().encode("somesecretkey");
+      return await new SignJWT(payload)
+        .setProtectedHeader({ alg: 'HS256' })
+        .sign(secret);
+}
+
+export async function verifyToken (token: string) {
+    const secret = new TextEncoder().encode("somesecretkey");
+    return await jwtVerify(token, secret);
 }

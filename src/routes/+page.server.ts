@@ -1,5 +1,5 @@
 import { decrypt, encrypt } from '$lib/server/encryption';
-import { generateToken } from '$lib/server/tokens';
+import { generateToken, verifyToken } from '$lib/server/tokens';
 import type { PageServerLoad } from './$types';
 
 const secretKey = "12345678901234567890123456789012"; // Must be 32 bytes for AES-256
@@ -12,12 +12,14 @@ export const load = (async ({url}) => {
     const encrypted = await encrypt(textToEncrypt, secretKey, ivString);
     const decrypted = await decrypt(encrypted, secretKey, ivString);
 
-    const token = generateToken({ encrypted });
+    const token = await generateToken({ encrypted });
+    const verifiedToken = await verifyToken(token);
 
     return {
         textToEncrypt,
         encrypted,
         decrypted,
-        token
+        token,
+        verifiedToken
     };
 }) satisfies PageServerLoad;

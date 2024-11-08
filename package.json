@@ -19,7 +19,6 @@
     "@sveltejs/adapter-cloudflare": "^4.7.4",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
-    "@types/jsonwebtoken": "^9.0.7",
     "prettier": "^3.3.2",
     "prettier-plugin-svelte": "^3.2.6",
     "svelte": "^5.0.0",
@@ -29,6 +28,6 @@
     "wrangler": "^3.85.0"
   },
   "dependencies": {
-    "jsonwebtoken": "^9.0.2"
+    "jose": "^5.9.6"
   }
 }
