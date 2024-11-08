@@ -4,6 +4,6 @@
     export let data: PageData;
 </script>
 
-<h1>Testing node:buffer</h1>
+<h1>Testing node buffer</h1>
 
 <pre>{JSON.stringify(data, null, 2)}</pre>
